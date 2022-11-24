@@ -8,10 +8,13 @@ async def start_db():
                                  database=database, host=host)
     await conn.execute("""create table if not exists users
 (
-    user_id  bigint,
-    username character(32),
-    reg_time integer,
-    is_new   boolean
+    user_id    bigint not null
+        constraint user_id
+            primary key,
+    username   varchar(32),
+    reg_time   integer,
+    is_new     boolean,
+    first_name varchar(30)
 );
 """)
     await conn.close()

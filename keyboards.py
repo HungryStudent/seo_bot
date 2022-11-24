@@ -2,6 +2,7 @@ from aiogram.types import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardMar
     ReplyKeyboardRemove
 from aiogram.utils.callback_data import CallbackData
 from utils import db
+from utils.gen_pay import gen_pay
 from config import *
 
 seo_data = CallbackData("seo", "id")
@@ -109,3 +110,7 @@ def get_method(seo_id):
                                                InlineKeyboardButton("Меню SEO", callback_data="seo_menu"),
                                                InlineKeyboardButton("Главное меню Услуг", callback_data="start_menu"))
     return kb
+
+
+def get_pay(user_id, seo_id):
+    kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=gen_pay(user_id, seo_id)))

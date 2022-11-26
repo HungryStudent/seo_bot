@@ -77,8 +77,8 @@ reviews = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Отзыв
                                                 InlineKeyboardButton("Главное меню", callback_data="start_menu"))
 
 
-def get_seo(seo_id):
-    kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", callback_data=buy_data.new(seo_id)),
+def get_seo(user_id, seo_id):
+    kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=gen_pay(user_id, seo_id)),
                                                InlineKeyboardButton("Гарантии",
                                                                     callback_data=warranty_data.new(seo_id)),
                                                InlineKeyboardButton("Порядок", callback_data=method_data.new(seo_id)),

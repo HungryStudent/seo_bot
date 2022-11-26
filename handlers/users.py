@@ -199,7 +199,8 @@ async def seo_product(call: CallbackQuery):
 @dp.callback_query_handler(kb.seo_data.filter())
 async def show_seo(call: CallbackQuery, callback_data: dict):
     seo_id = callback_data["id"]
-    await call.message.answer_photo(seo_file_id[seo_id], caption=seo_text[seo_id], reply_markup=kb.get_seo(seo_id))
+    await call.message.answer_photo(seo_file_id[seo_id], caption=seo_text[seo_id],
+                                    reply_markup=kb.get_seo(call.from_user.id, seo_id))
     await call.answer()
 
 

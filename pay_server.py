@@ -20,13 +20,13 @@ async def check_pay(req: Request):
 ЛС: @SEO_optimizacia_wildberries""")
     user_data = await db.get_user(user_id)
     order_text = f"""Пользователь: {user_data['full_name']}
-Юзернейм: {user_data['username']}
+Юзернейм: @{user_data['username']}
 Пакет: {seo_name[seo_id]}
 Стоимость: {seo_price[seo_id]}
 Дата: {datetime.datetime.now().strftime("%d.%m.%Y")}
 Время: {datetime.datetime.now().strftime("%H:%M:%S")}"""
     for admin in admin_id:
-        await bot.send_message(admin, """Пользователь: """)
+        await bot.send_message(admin, order_text)
 
     raise HTTPException(200, "ok")
 

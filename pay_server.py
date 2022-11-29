@@ -19,7 +19,7 @@ async def check_pay(req: Request):
 Если с вами после оформления заказа не связался менеджер, пожалуйста напишите нам самостоятельно в
 ЛС: @SEO_optimizacia_wildberries""")
     user_data = await db.get_user(user_id)
-    order_text = f"""Пользователь: {user_data['fullname']}
+    order_text = f"""Пользователь: {user_data['full_name']}
 Юзернейм: {user_data['username']}
 Пакет: {seo_name[seo_id]}
 Стоимость: {seo_price[seo_id]}

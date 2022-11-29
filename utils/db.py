@@ -14,7 +14,8 @@ async def start_db():
     username   varchar(32),
     reg_time   integer,
     is_new     boolean,
-    first_name varchar(30)
+    first_name varchar(30),
+    full_name varchar(100)
 );
 """)
     await conn.close()
@@ -31,7 +32,7 @@ async def add_user(user_id, username, first_name):
 async def get_user(user_id):
     conn = await asyncpg.connect(user=user, password=password,
                                  database=database, host=host)
-    row = await conn.fetchrow("SELECT user_id FROM users WHERE user_id = $1", user_id)
+    row = await conn.fetchrow("SELECT user_id, full_name, username FROM users WHERE user_id = $1", user_id)
     await conn.close()
     return row
 

@@ -145,7 +145,8 @@ seo_warranty = {"base": """В Базовой SEO- Оптимизации мы Г
 
 @dp.message_handler(commands='start')
 async def start_message(message: Message):
-    await db.add_user(message.from_user.id, message.from_user.username, message.from_user.first_name)
+    await db.add_user(message.from_user.id, message.from_user.username, message.from_user.first_name,
+                      message.from_user.full_name)
     await message.answer(f"Привет, {message.from_user.first_name}!\n\nНа связи команда SEO For WB")
     await message.answer_chat_action(ChatActions.TYPING)
     await gen_sleep(message, 5)

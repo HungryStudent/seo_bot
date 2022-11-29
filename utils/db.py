@@ -21,12 +21,12 @@ async def start_db():
     await conn.close()
 
 
-async def add_user(user_id, username, first_name):
+async def add_user(user_id, username, first_name, full_name):
     conn = await asyncpg.connect(user=user, password=password,
                                  database=database, host=host)
     reg_time = int(time.time())
-    await conn.execute("INSERT INTO users VALUES ($1, $2, $3, true, $4) ON CONFLICT DO NOTHING", user_id, username,
-                       reg_time, first_name)
+    await conn.execute("INSERT INTO users VALUES ($1, $2, $3, true, $4, $5) ON CONFLICT DO NOTHING", user_id, username,
+                       reg_time, first_name, full_name)
 
 
 async def get_user(user_id):

@@ -9,12 +9,13 @@ from utils import db
 app = FastAPI()
 
 
-@app.post('/api/seobot/')
+@app.post('/api/seo/')
 async def check_pay(req: Request):
     data = await req.json()
     seo_id = data["object"]["description"].split("_")[0]
     user_id = int(data["object"]["description"].split("_")[1])
-    await bot.send_message(user_id, """Взяли в работу, ваш заказ будет готов до ___ включительно, но постараемся быстрее 
+    await bot.send_message(user_id,
+                           f"""Взяли в работу, ваш заказ будет готов до {(datetime.datetime.today() + datetime.timedelta(days=+6)).strftime("%d.%m.%Y")} включительно, но постараемся быстрее 
 
 Если с вами после оформления заказа не связался менеджер, пожалуйста напишите нам самостоятельно в
 ЛС: @SEO_optimizacia_wildberries""")

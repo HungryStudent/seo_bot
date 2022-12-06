@@ -55,7 +55,7 @@ async def training(call: CallbackQuery):
     
 Курс по SEO Wildberries от эксперта с международным опытом e-comm торговли более 8 лет. Только рабочие фишки, новый революционный подход к оптимизации, разбор кейсов, изучение механизмов ранжирования, домашние задания, работа над ошибками
     
-Жмите на кнопку ниже и узнайте подробнее""", reply_markup=kb.promotion_strategy)
+Жмите на кнопку ниже и узнайте подробнее""", reply_markup=kb.get_promotion_strategy(call.from_user.id, "strateg"))
     await call.answer()
 
 
@@ -78,9 +78,6 @@ async def analytics(call: CallbackQuery):
 Вы можете обратится за помощью к нашей команде, мы оперативно оценим ситуацию и дадим экспертную оценку в цифрах""",
                               reply_markup=kb.analytics)
     await call.answer()
-
-
-1
 
 
 @dp.callback_query_handler(text="card_diagnost\ics")

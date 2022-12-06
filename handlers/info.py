@@ -45,7 +45,8 @@ async def about_self_purchase(call: CallbackQuery):
 
     await call.message.answer("""Заказывайте самовыкупы товаров и получайте Гарантированный результат!
     
-Для того, чтобы связаться с менеджером нажмите на кнопку ниже""", reply_markup=kb.self_purchase_with_url)
+Для того, чтобы связаться с менеджером нажмите на кнопку ниже""",
+                              reply_markup=kb.get_self_purchase_with_url(call.from_user.id, "strateg"))
 
 
 @dp.callback_query_handler(text="training")

@@ -40,7 +40,16 @@ def get_promotion_strategy(user_id, prod_id):
         InlineKeyboardButton("Заказать Стратегию Продвижения", url=gen_pay(user_id, prod_id)))
 
 
-self_purchase_with_url = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Самовыкупы", url=support_url))
+def get_self_purchase_with_url(user_id, prod_id):
+    return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Самовыкупы", url=support_url),
+                                                 InlineKeyboardButton("Главное меню",
+                                                                      callback_data="start_menu"),
+                                                 InlineKeyboardButton("Меню SEO",
+                                                                      callback_data="seo_menu"),
+                                                 InlineKeyboardButton("Отзывы", callback_data="reviews"),
+                                                 InlineKeyboardButton("Заказать Стратегию Продвижения",
+                                                                      url=gen_pay(user_id, prod_id)))
+
 
 infographics = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать Инфографику", url=support_url),
                                                      InlineKeyboardButton("Заказать Видео", url=support_url),
@@ -48,6 +57,7 @@ infographics = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("За�
                                                      InlineKeyboardButton("Примеры работ", url=support_url))
 
 analytics = InlineKeyboardMarkup(row_width=1).add(
+
     InlineKeyboardButton("Диагностика карточки товара", callback_data="card_diagnostics"),
     InlineKeyboardButton("Анализ ниши", callback_data="niche_analysis"))
 

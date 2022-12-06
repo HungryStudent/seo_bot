@@ -62,12 +62,20 @@ analytics = InlineKeyboardMarkup(row_width=1).add(
     InlineKeyboardButton("Диагностика карточки товара", callback_data="card_diagnostics"),
     InlineKeyboardButton("Анализ ниши", callback_data="niche_analysis"))
 
-card_diagnostics = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=support_url),
-                                                         InlineKeyboardButton("Задать вопрос", url=support_url),
-                                                         InlineKeyboardButton("Главное меню",
-                                                                              callback_data="start_menu"))
+info_price_buy = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=support_url),
+                                                       InlineKeyboardButton("Задать вопрос", url=support_url),
+                                                       InlineKeyboardButton("Главное меню",
+                                                                            callback_data="start_menu"))
 
-niche_analysis = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать анализ ниши", url=support_url),
+
+def get_card_diagnostics(user_id, prod_id):
+    return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=gen_pay(user_id, prod_id)),
+                                                 InlineKeyboardButton("Задать вопрос", url=support_url),
+                                                 InlineKeyboardButton("Главное меню",
+                                                                      callback_data="start_menu"))
+
+def get_niche_analysis(user_id, prod_id):
+    return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать анализ ниши", url=gen_pay(user_id, prod_id)),
                                                        InlineKeyboardButton("Задать вопрос", url=support_url),
                                                        InlineKeyboardButton("Главное меню", callback_data="start_menu"))
 

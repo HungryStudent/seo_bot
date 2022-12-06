@@ -72,21 +72,21 @@ async def info_price(call: CallbackQuery):
 Работа по Вашему ТЗ
 1 доработка
 Стоимость: 1 500 руб. (1 изображение)
-""", reply_markup=kb.card_diagnostics)
+""", reply_markup=kb.info_price_buy)
     await call.message.answer("""Профессиональный
 1 фотография
 2 варианта дизайна
 2 доработки по Вашим замечаниям
 Формирование уникального торгового предложения на основании анализа конкурентов
 Стоимость: 3 500 руб. ( 1 изображение)
-    """, reply_markup=kb.card_diagnostics)
+    """, reply_markup=kb.info_price_buy)
     await call.message.answer("""VIP
 1 фотография
 4 вариант дизайна
 4 доработки по Вашим замечаниям
 Формирование уникального торгового предложения на основании глубокого анализа конкурентов
 Cтоимость: 5 000 руб. (1 изображение)
-    """, reply_markup=kb.card_diagnostics)
+    """, reply_markup=kb.info_price_buy)
 
 
 @dp.callback_query_handler(text="training")
@@ -142,7 +142,8 @@ async def card_diagnostics(call: CallbackQuery):
 -Оценку ценовой модели карточки
 -Оценку Категорий карточки товара
 -Оценку текущего потенциала ниш
--Оценку других признаков влияющих на показатели карточки товара""", reply_markup=kb.card_diagnostics)
+-Оценку других признаков влияющих на показатели карточки товара""",
+                              reply_markup=kb.get_card_diagnostics(call.from_user.id, "diagnostics"))
 
 
 @dp.callback_query_handler(text="start_menu")
@@ -182,4 +183,4 @@ async def niche_analysis(call: CallbackQuery):
 
 5. Покажем динамику спроса на товар в соотношении разных периодов времени года, что покажет периоды где спрос максимальный и где спрос минимальный
 
-6. Учтем ваши пожелания при формировании отчета.""", reply_markup=kb.niche_analysis)
+6. Учтем ваши пожелания при формировании отчета.""", reply_markup=kb.get_niche_analysis(call.from_user.id, "niche"))

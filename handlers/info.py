@@ -120,7 +120,7 @@ async def analytics(call: CallbackQuery):
     await call.answer()
 
 
-@dp.callback_query_handler(text="card_diagnost\ics")
+@dp.callback_query_handler(text="card_diagnostics")
 async def card_diagnostics(call: CallbackQuery):
     await call.answer()
     await call.message.answer("""Каждая карточка имеет индивидуальные показатели

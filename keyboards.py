@@ -129,4 +129,4 @@ def get_method(seo_id):
 
 
 def get_pay(user_id, seo_id):
-    kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=gen_pay(user_id, seo_id)))
+    return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=gen_pay(user_id, seo_id)))

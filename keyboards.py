@@ -25,15 +25,20 @@ seo_product = InlineKeyboardMarkup(row_width=1).add(
     InlineKeyboardButton("Служба поддержки", url=support_url),
     InlineKeyboardButton("Главное меню Услуг", callback_data="start_menu"))
 
-self_purchase = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать Самовыкупы", url=support_url),
-                                                      InlineKeyboardButton("Заказать Стратегию Продвижения",
-                                                                           url=support_url),
-                                                      InlineKeyboardButton("Связаться с поддержкой", url=support_url),
-                                                      InlineKeyboardButton("Узнать как это работает",
-                                                                           callback_data="about_self_purchase"))
 
-promotion_strategy = InlineKeyboardMarkup(row_width=1).add(
-    InlineKeyboardButton("Заказать Стратегию Продвижения", url=support_url))
+def get_self_purchase(user_id, prod_id):
+    return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать Самовыкупы", url=support_url),
+                                                 InlineKeyboardButton("Заказать Стратегию Продвижения",
+                                                                      url=gen_pay(user_id, prod_id)),
+                                                 InlineKeyboardButton("Связаться с поддержкой", url=support_url),
+                                                 InlineKeyboardButton("Узнать как это работает",
+                                                                      callback_data="about_self_purchase"))
+
+
+def get_promotion_strategy(user_id, prod_id):
+    return InlineKeyboardMarkup(row_width=1).add(
+        InlineKeyboardButton("Заказать Стратегию Продвижения", url=gen_pay(user_id, prod_id)))
+
 
 self_purchase_with_url = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Самовыкупы", url=support_url))
 

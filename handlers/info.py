@@ -12,7 +12,8 @@ async def self_purchase(call: CallbackQuery):
     
 Делая выкупы вы увеличиваете пожалуй один из самых важных показателей влияющих на ранжирование карточек товаров
     
-Для того, чтобы сделать заказ или узнать подробнее нажмите на кнопку ниже!""", reply_markup=kb.self_purchase)
+Для того, чтобы сделать заказ или узнать подробнее нажмите на кнопку ниже!""",
+                              reply_markup=kb.get_self_purchase(call.from_user.id, "strateg"))
     await call.answer()
 
 
@@ -30,7 +31,7 @@ async def about_self_purchase(call: CallbackQuery):
     await call.message.answer(
         """Наша команда разработает наиболее эффективную стратегию по продвижению которая позволит расширить индексируемое ядро и вывести карточку в ТОП поисковой выдачи, что приведет к росту показов карточки товара и последующим продажам!"
 И все это за минимально возможный бюджет!""",
-        reply_markup=kb.promotion_strategy)
+        reply_markup=kb.get_promotion_strategy(call.from_user.id, "strateg"))
 
     await call.message.answer("""Затем необходимо увеличить Оборот
     
@@ -78,7 +79,10 @@ async def analytics(call: CallbackQuery):
     await call.answer()
 
 
-@dp.callback_query_handler(text="card_diagnostics")
+1
+
+
+@dp.callback_query_handler(text="card_diagnost\ics")
 async def card_diagnostics(call: CallbackQuery):
     await call.answer()
     await call.message.answer("""Каждая карточка имеет индивидуальные показатели

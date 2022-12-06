@@ -49,8 +49,21 @@ async def about_self_purchase(call: CallbackQuery):
                               reply_markup=kb.get_self_purchase_with_url(call.from_user.id, "strateg"))
 
 
+@dp.callback_query_handler(text="video")
+async def video(call: CallbackQuery):
+    await call.answer()
+    await call.message.answer("""Тариф включает в себя:
+1.20-40 секунд видео. 
+2.Срок реализации 2-3 дня. 
+3. 3 правки включены в тариф.
+
+Стоимость:3500 
+""", reply_markup=kb.get_pay(call.from_user.id, "video"))
+
+
 @dp.callback_query_handler(text='info_price')
 async def info_price(call: CallbackQuery):
+    await call.answer()
     await call.message.answer("""Базовый
 1 фотография
 1 вариант дизайна

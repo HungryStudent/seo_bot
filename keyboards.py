@@ -51,10 +51,11 @@ def get_self_purchase_with_url(user_id, prod_id):
                                                                       url=gen_pay(user_id, prod_id)))
 
 
-infographics = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать Инфографику", url=support_url),
-                                                     InlineKeyboardButton("Заказать Видео", url=support_url),
-                                                     InlineKeyboardButton("Задать вопрос", url=support_url),
-                                                     InlineKeyboardButton("Примеры работ", url=support_url))
+infographics = InlineKeyboardMarkup(row_width=1).add(
+    InlineKeyboardButton("Заказать Инфографику", callback_data='info_price'),
+    InlineKeyboardButton("Заказать Видео", callback_data='video'),
+    InlineKeyboardButton("Задать вопрос", url=support_url),
+    InlineKeyboardButton("Примеры работ", url=support_url))
 
 analytics = InlineKeyboardMarkup(row_width=1).add(
 

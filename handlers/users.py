@@ -286,6 +286,15 @@ async def reviews(call: CallbackQuery):
     
 Переходи по кнопке ниже и читай свежие отзывы о результатах нашей работы""", reply_markup=kb.reviews)
 
+@dp.callback_query_handler(text="video")
+async def video(call: CallbackQuery):
+    await call.message.answer("""Тариф включает в себя:
+1.20-40 секунд видео. 
+2.Срок реализации 2-3 дня. 
+3. 3 правки включены в тариф.
+
+Стоимость:3500 
+""", reply_markup=kb.get_pay(call.from_user.id, "video"))
 
 @dp.callback_query_handler(text="seo_menu")
 async def reviews(call: CallbackQuery):

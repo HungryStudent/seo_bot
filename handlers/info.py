@@ -49,6 +49,31 @@ async def about_self_purchase(call: CallbackQuery):
                               reply_markup=kb.get_self_purchase_with_url(call.from_user.id, "strateg"))
 
 
+@dp.callback_query_handler(text='info_price')
+async def info_price(call: CallbackQuery):
+    await call.message.answer("""Базовый
+1 фотография
+1 вариант дизайна
+Работа по Вашему ТЗ
+1 доработка
+Стоимость: 1 500 руб. (1 изображение)
+""", reply_markup=kb.card_diagnostics)
+    await call.message.answer("""Профессиональный
+1 фотография
+2 варианта дизайна
+2 доработки по Вашим замечаниям
+Формирование уникального торгового предложения на основании анализа конкурентов
+Стоимость: 3 500 руб. ( 1 изображение)
+    """, reply_markup=kb.card_diagnostics)
+    await call.message.answer("""VIP
+1 фотография
+4 вариант дизайна
+4 доработки по Вашим замечаниям
+Формирование уникального торгового предложения на основании глубокого анализа конкурентов
+Cтоимость: 5 000 руб. (1 изображение)
+    """, reply_markup=kb.card_diagnostics)
+
+
 @dp.callback_query_handler(text="training")
 async def training(call: CallbackQuery):
     await call.message.answer_photo(training_file_id, caption="""Инновационный тренинг SEO для WILDBERRIES

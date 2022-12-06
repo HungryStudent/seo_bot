@@ -52,7 +52,9 @@ async def about_self_purchase(call: CallbackQuery):
 @dp.callback_query_handler(text="video")
 async def video(call: CallbackQuery):
     await call.answer()
-    await call.message.answer("""Тариф включает в себя:
+    await call.message.answer("""Продающее видео для Карточек товаров WildBerries
+    
+Тариф включает в себя:
 1.20-40 секунд видео. 
 2.Срок реализации 2-3 дня. 
 3. 3 правки включены в тариф.

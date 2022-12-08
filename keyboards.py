@@ -13,8 +13,8 @@ method_data = CallbackData("method", "id")
 start_menu = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("SEO-Оптимизация", callback_data="seo_product"),
                                                    InlineKeyboardButton("Самовыкупы", callback_data="self_purchase"),
                                                    InlineKeyboardButton("Обучение", callback_data="training"),
-                                                   InlineKeyboardButton("Инфографика", callback_data="infographics"),
                                                    InlineKeyboardButton("Аналитика", callback_data="analytics"),
+                                                   InlineKeyboardButton("Инфографика", callback_data="infographics"),
                                                    InlineKeyboardButton("Поддержка", url=support_url))
 
 seo_product = InlineKeyboardMarkup(row_width=1).add(
@@ -32,12 +32,16 @@ def get_self_purchase(user_id, prod_id):
                                                                       url=gen_pay(user_id, prod_id)),
                                                  InlineKeyboardButton("Связаться с поддержкой", url=support_url),
                                                  InlineKeyboardButton("Узнать как это работает",
-                                                                      callback_data="about_self_purchase"))
+                                                                      callback_data="about_self_purchase"),
+                                                 InlineKeyboardButton("Главное меню Услуг", callback_data="start_menu"))
 
 
 def get_promotion_strategy(user_id, prod_id):
     return InlineKeyboardMarkup(row_width=1).add(
-        InlineKeyboardButton("Заказать Стратегию Продвижения", url=gen_pay(user_id, prod_id)))
+        InlineKeyboardButton("Заказать Стратегию Продвижения", url=gen_pay(user_id, prod_id)),
+        InlineKeyboardButton("Задать вопрос", url=support_url),
+        InlineKeyboardButton("Главное меню",
+                             callback_data="start_menu"))
 
 
 def get_self_purchase_with_url(user_id, prod_id):
@@ -58,9 +62,11 @@ infographics = InlineKeyboardMarkup(row_width=1).add(
     InlineKeyboardButton("Примеры работ", url=support_url))
 
 analytics = InlineKeyboardMarkup(row_width=1).add(
-
     InlineKeyboardButton("Диагностика карточки товара", callback_data="card_diagnostics"),
-    InlineKeyboardButton("Анализ ниши", callback_data="niche_analysis"))
+    InlineKeyboardButton("Анализ ниши", callback_data="niche_analysis"),
+    InlineKeyboardButton("Задать вопрос", url=support_url),
+    InlineKeyboardButton("Главное меню",
+                         callback_data="start_menu"))
 
 info_price_buy = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=support_url),
                                                        InlineKeyboardButton("Задать вопрос", url=support_url),
@@ -74,10 +80,13 @@ def get_card_diagnostics(user_id, prod_id):
                                                  InlineKeyboardButton("Главное меню",
                                                                       callback_data="start_menu"))
 
+
 def get_niche_analysis(user_id, prod_id):
-    return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать анализ ниши", url=gen_pay(user_id, prod_id)),
-                                                       InlineKeyboardButton("Задать вопрос", url=support_url),
-                                                       InlineKeyboardButton("Главное меню", callback_data="start_menu"))
+    return InlineKeyboardMarkup(row_width=1).add(
+        InlineKeyboardButton("Заказать анализ ниши", url=gen_pay(user_id, prod_id)),
+        InlineKeyboardButton("Задать вопрос", url=support_url),
+        InlineKeyboardButton("Главное меню", callback_data="start_menu"))
+
 
 messengers = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Вконтакте", url=vk_url),
                                                    InlineKeyboardButton("Сайт", url=site_url),
@@ -90,7 +99,6 @@ differences = InlineKeyboardMarkup(row_width=1).add(
     InlineKeyboardButton("Базовая SEO-Оптимизация", callback_data=seo_data.new("base")),
     InlineKeyboardButton("Профессиональная SEO-Оптимизация", callback_data=seo_data.new("prof")),
     InlineKeyboardButton("Надзор за карточками товаров", callback_data=seo_data.new("super")),
-    InlineKeyboardButton("Задать вопросы про тарифы", url=support_url),
     InlineKeyboardButton("Отзывы", callback_data="reviews"),
     InlineKeyboardButton("Главное меню Услуг", callback_data="start_menu"))
 
@@ -114,8 +122,8 @@ def get_seo(user_id, seo_id):
     return kb
 
 
-def get_warranty(seo_id):
-    kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", callback_data=buy_data.new(seo_id)),
+def get_warranty(user_id, seo_id):
+    kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=gen_pay(user_id, seo_id)),
                                                InlineKeyboardButton("Задать вопрос", url=support_url),
                                                InlineKeyboardButton("Отличия тарифов", callback_data="differences"),
                                                InlineKeyboardButton("Отзывы", callback_data="reviews"),
@@ -124,8 +132,8 @@ def get_warranty(seo_id):
     return kb
 
 
-def get_method(seo_id):
-    kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", callback_data=buy_data.new(seo_id)),
+def get_method(user_id, seo_id):
+    kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=gen_pay(user_id, seo_id)),
                                                InlineKeyboardButton("Гарантии",
                                                                     callback_data=warranty_data.new(seo_id)),
                                                InlineKeyboardButton("Задать вопрос", url=support_url),

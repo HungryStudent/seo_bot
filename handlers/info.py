@@ -8,12 +8,12 @@ from config import *
 
 @dp.callback_query_handler(text="self_purchase")
 async def self_purchase(call: CallbackQuery):
-    await call.message.answer("""Самовыкупы товаров один из наиболее эффективных методов продвижения через поисковую выдачу.
+    await call.message.answer_photo(self_purchase_file_id, caption="""Самовыкупы товаров один из наиболее эффективных методов продвижения через поисковую выдачу.
     
 Делая выкупы вы увеличиваете пожалуй один из самых важных показателей влияющих на ранжирование карточек товаров
     
 Для того, чтобы сделать заказ или узнать подробнее нажмите на кнопку ниже!""",
-                              reply_markup=kb.get_self_purchase(call.from_user.id, "strateg"))
+                                    reply_markup=kb.get_self_purchase(call.from_user.id, "strateg"))
     await call.answer()
 
 
@@ -43,7 +43,7 @@ async def about_self_purchase(call: CallbackQuery):
 73% клиентов принимают решение о покупке читая отзывы. Наши отзывы редко исключают из рейтинга, что способствует повышению конверсии карточки товара и закрывает возражения клиентов!""")
     await gen_sleep(call.message, 10)
 
-    await call.message.answer("""Заказывайте самовыкупы товаров и получайте Гарантированный результат!
+    await call.message.answer_photo(start_file_id, caption="""Заказывайте самовыкупы товаров и получайте Гарантированный результат!
     
 Для того, чтобы связаться с менеджером нажмите на кнопку ниже""",
                               reply_markup=kb.get_self_purchase_with_url(call.from_user.id, "strateg"))
@@ -148,8 +148,9 @@ async def card_diagnostics(call: CallbackQuery):
 
 @dp.callback_query_handler(text="start_menu")
 async def start_menu(call: CallbackQuery):
-    await call.message.answer("Начни Правильное продвижение своих карточек товаров вместе с командой профессионалов!",
-                              reply_markup=kb.start_menu)
+    await call.message.answer_photo(start_file_id,
+                                    caption="Начни Правильное продвижение своих карточек товаров вместе с командой профессионалов!",
+                                    reply_markup=kb.start_menu)
     await call.answer()
 
 

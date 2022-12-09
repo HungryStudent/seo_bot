@@ -57,7 +57,7 @@ async def get_new_users():
 async def get_training(user_id):
     conn = await asyncpg.connect(user=user, password=password,
                                  database=database, host=host)
-    row = await conn.fetch("SELECT is_training FROM users WHERE user_id = $1", user_id)
+    row = await conn.fetchrow("SELECT is_training FROM users WHERE user_id = $1", user_id)
     await conn.execute("UPDATE users SET is_training = true WHERE user_id = $1", user_id)
     await conn.close()
     return row

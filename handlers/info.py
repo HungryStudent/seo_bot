@@ -61,7 +61,7 @@ async def video(call: CallbackQuery):
 3. 3 правки включены в тариф.
 
 Стоимость:3500 
-""", reply_markup=kb.get_pay(call.from_user.id, "video"))
+""", reply_markup=kb.get_video(call.from_user.id, "video"))
 
 
 @dp.callback_query_handler(text='info_price')

@@ -93,7 +93,7 @@ Cтоимость: 5 000 руб. (1 изображение)
 @dp.callback_query_handler(text="training")
 async def training(call: CallbackQuery):
     is_training = await db.get_training(call.from_user.id)
-    if not is_training:
+    if not is_training["is_training"]:
         await call.message.answer_photo(training_file_id)
         await gen_sleep(call.message, 5)
         await call.message.answer("""Формат «Тренинга» — шестинедельный «динамический» образовательный модуль (цифра может меняться вместе с алгоритмами ВБ) включающий в себя текстовые и голосовые сообщения, видео уроки, лекции, слайды, домашние задания (чтобы не филонили) и постоянную обратную связь!!!
@@ -163,11 +163,11 @@ async def training(call: CallbackQuery):
  
 — Ну и конечно Людям, которые мечтают стать квалифицированным специалистом в области SEO для любого Маркетплейса!""")
     else:
-        await call.message.answer_photo(training_file_id, caption="""Инновационный тренинг SEO для WILDBERRIES
-        
-    Курс по SEO Wildberries от эксперта с международным опытом e-comm торговли более 8 лет. Только рабочие фишки, новый революционный подход к оптимизации, разбор кейсов, изучение механизмов ранжирования, домашние задания, работа над ошибками
-        
-    Жмите на кнопку ниже и узнайте подробнее""", reply_markup=kb.get_training(call.from_user.id, "training"))
+        await call.message.answer_photo(third_training_file_id, caption="""Инновационный тренинг SEO для WILDBERRIES
+    
+Курс по SEO Wildberries от эксперта с международным опытом e-comm торговли более 8 лет. Только рабочие фишки, новый революционный подход к оптимизации, разбор кейсов, изучение механизмов ранжирования, домашние задания, работа над ошибками
+    
+Жмите на кнопку ниже и узнайте подробнее""", reply_markup=kb.get_training(call.from_user.id, "training"))
     await call.answer()
 
 

@@ -25,7 +25,7 @@ async def add_user(user_id, username, first_name, full_name):
     conn = await asyncpg.connect(user=user, password=password,
                                  database=database, host=host)
     reg_time = int(time.time())
-    await conn.execute("INSERT INTO users VALUES ($1, $2, $3, true, $4, $5) ON CONFLICT DO NOTHING", user_id, username,
+    await conn.execute("INSERT INTO users VALUES ($1, $2, $3, true, $4, $5, false) ON CONFLICT DO NOTHING", user_id, username,
                        reg_time, first_name, full_name)
 
 
@@ -52,3 +52,12 @@ async def get_new_users():
     await conn.execute("UPDATE users SET is_new = false")
     await conn.close()
     return rows
+
+
+async def get_training(user_id):
+    conn = await asyncpg.connect(user=user, password=password,
+                                 database=database, host=host)
+    row = await conn.fetch("SELECT is_training FROM users WHERE user_id = $1", user_id)
+    await conn.execute("UPDATE users SET is_training = true WHERE user_id = $1", user_id)
+    await conn.close()
+    return row

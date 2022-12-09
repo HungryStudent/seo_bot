@@ -15,7 +15,8 @@ start_menu = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("SEO-О�
                                                    InlineKeyboardButton("Обучение", callback_data="training"),
                                                    InlineKeyboardButton("Аналитика", callback_data="analytics"),
                                                    InlineKeyboardButton("Инфографика", callback_data="infographics"),
-                                                   InlineKeyboardButton("Поддержка", url=support_url))
+                                                   InlineKeyboardButton("Поддержка", url=support_url),
+                                                   InlineKeyboardButton("Партнерская программа", url=referal_url))
 
 seo_product = InlineKeyboardMarkup(row_width=1).add(
     InlineKeyboardButton("Базовая SEO-Оптимизация", callback_data=seo_data.new("base")),
@@ -36,9 +37,18 @@ def get_self_purchase(user_id, prod_id):
                                                  InlineKeyboardButton("Главное меню Услуг", callback_data="start_menu"))
 
 
+def get_training(user_id, prod_id):
+    return InlineKeyboardMarkup(row_width=1).add(
+        InlineKeyboardButton("Про тренинг", callback_data="about_training"),
+        InlineKeyboardButton("Купить тренинг",
+                             url=gen_pay(user_id, prod_id)),
+        InlineKeyboardButton("Задать вопрос", url=support_url),
+        InlineKeyboardButton("Главное меню",
+                             callback_data="start_menu"))
+
+
 def get_promotion_strategy(user_id, prod_id):
     return InlineKeyboardMarkup(row_width=1).add(
-        InlineKeyboardButton("Заказать Стратегию Продвижения", url=gen_pay(user_id, prod_id)),
         InlineKeyboardButton("Задать вопрос", url=support_url),
         InlineKeyboardButton("Главное меню",
                              callback_data="start_menu"))
@@ -59,7 +69,9 @@ infographics = InlineKeyboardMarkup(row_width=1).add(
     InlineKeyboardButton("Заказать Инфографику", callback_data='info_price'),
     InlineKeyboardButton("Заказать Видео", callback_data='video'),
     InlineKeyboardButton("Задать вопрос", url=support_url),
-    InlineKeyboardButton("Примеры работ", url=support_url))
+    InlineKeyboardButton("Примеры работ", url=support_url),
+    InlineKeyboardButton("Главное меню",
+                         callback_data="start_menu"))
 
 analytics = InlineKeyboardMarkup(row_width=1).add(
     InlineKeyboardButton("Диагностика карточки товара", callback_data="card_diagnostics"),
@@ -113,7 +125,8 @@ def get_seo(user_id, seo_id):
     kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=gen_pay(user_id, seo_id)),
                                                InlineKeyboardButton("Гарантии",
                                                                     callback_data=warranty_data.new(seo_id)),
-                                               InlineKeyboardButton("Порядок", callback_data=method_data.new(seo_id)),
+                                               InlineKeyboardButton("Порядок работ",
+                                                                    callback_data=method_data.new(seo_id)),
                                                InlineKeyboardButton("Отличия тарифов", callback_data="differences"),
                                                InlineKeyboardButton("Задать вопрос", url=support_url),
                                                InlineKeyboardButton("Отзывы", callback_data="reviews"),
@@ -142,6 +155,13 @@ def get_method(user_id, seo_id):
                                                InlineKeyboardButton("Меню SEO", callback_data="seo_menu"),
                                                InlineKeyboardButton("Главное меню Услуг", callback_data="start_menu"))
     return kb
+
+
+def get_video(user_id, seo_id):
+    return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=gen_pay(user_id, seo_id)),
+                                                 InlineKeyboardButton("Вернуться в инфографику",
+                                                                      callback_data="infographics"),
+                                                 InlineKeyboardButton("Задать вопрос", url=support_url))
 
 
 def get_pay(user_id, seo_id):

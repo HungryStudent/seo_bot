@@ -16,7 +16,7 @@ async def check_pay(req: Request):
     user_id = int(data["object"]["description"].split("_")[1])
     await bot.send_message(user_id,
                            f"""Взяли в работу, ваш заказ будет готов до {(datetime.datetime.today() + datetime.timedelta(days=+6)).strftime("%d.%m.%Y")} включительно, но постараемся быстрее 
-
+    
 Если с вами после оформления заказа не связался менеджер, пожалуйста напишите нам самостоятельно в
 ЛС: @SEO_optimizacia_wildberries""")
     user_data = await db.get_user(user_id)
@@ -28,7 +28,10 @@ async def check_pay(req: Request):
 Дата: {datetime.datetime.now().strftime("%d.%m.%Y")}
 Время: {datetime.datetime.now().strftime("%H:%M:%S")}"""
     for admin in admin_id:
-        await bot.send_message(admin, order_text)
+        try:
+            await bot.send_message(admin, order_text)
+        except:
+            pass
 
     raise HTTPException(200, "ok")
 

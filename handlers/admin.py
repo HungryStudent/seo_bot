@@ -8,7 +8,7 @@ from utils import db
 from config import *
 
 
-@dp.message_handler(lambda m: m.from_user.id in admin_id, content_types="photo")
+@dp.message_handler(content_types="photo")
 async def send_file_id(message: Message):
     await message.answer(message.photo[-1].file_id)
 

@@ -145,6 +145,8 @@ seo_warranty = {"base": """В Базовой SEO- Оптимизации мы Г
 
 @dp.message_handler(commands='start')
 async def start_message(message: Message):
+    if message.from_user.id in admin_id:
+        await message.answer("Вы вошли как администратор", reply_markup=kb.admin)
     await db.add_user(message.from_user.id, message.from_user.username, message.from_user.first_name,
                       message.from_user.full_name)
     await message.answer_photo(start_file_id,

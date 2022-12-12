@@ -10,6 +10,8 @@ buy_data = CallbackData("buy", "id")
 warranty_data = CallbackData("warranty", "id")
 method_data = CallbackData("method", "id")
 
+admin = ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton("Запустить рассылку"))
+
 start_menu = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("SEO-Оптимизация", callback_data="seo_product"),
                                                    InlineKeyboardButton("Самовыкупы", callback_data="self_purchase"),
                                                    InlineKeyboardButton("Обучение", callback_data="training"),
@@ -39,10 +41,11 @@ def get_self_purchase(user_id, prod_id):
 
 def get_training(user_id, prod_id):
     return InlineKeyboardMarkup(row_width=1).add(
-        InlineKeyboardButton("Про тренинг", callback_data="about_training"),
+
         InlineKeyboardButton("Купить тренинг",
                              url=gen_pay(user_id, prod_id)),
         InlineKeyboardButton("Задать вопрос", url=support_url),
+        InlineKeyboardButton("Узнать подробнее", callback_data="about_training"),
         InlineKeyboardButton("Главное меню",
                              callback_data="start_menu"))
 
@@ -161,7 +164,8 @@ def get_video(user_id, seo_id):
     return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Заказать", url=gen_pay(user_id, seo_id)),
                                                  InlineKeyboardButton("Вернуться в инфографику",
                                                                       callback_data="infographics"),
-                                                 InlineKeyboardButton("Задать вопрос", url=support_url))
+                                                 InlineKeyboardButton("Задать вопрос", url=support_url),
+                                                 InlineKeyboardButton("Главное меню", callback_data="start_menu"))
 
 
 def get_pay(user_id, seo_id):

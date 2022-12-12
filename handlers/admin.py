@@ -13,15 +13,16 @@ async def send_file_id(message: Message):
     await message.answer(message.photo[-1].file_id)
 
 
-@dp.message_handler(commands="send", user_id=admin_id)
+@dp.message_handler(lambda m: m.from_user.id in admin_id, text="Запустить рассылку")
+@dp.message_handler(lambda m: m.from_user.id in admin_id, commands="send")
 async def send_text(message: Message):
     await message.answer("Введите текст рассылки", reply_markup=kb.admin_cancel)
     await SendStates.enter_text.set()
 
 
-@dp.message_handler(state="*", text="Отменить рассылку", user_id=admin_id)
+@dp.message_handler(lambda m: m.from_user.id in admin_id, state="*", text="Отменить рассылку")
 async def cancel_input(message: Message, state: FSMContext):
-    await message.answer("Ввод остановлен", reply_markup=kb.ReplyKeyboardRemove())
+    await message.answer("Ввод остановлен", reply_markup=kb.admin)
     await state.finish()
 
 

@@ -1,10 +1,15 @@
-import datetime
-
-import uvicorn as uvicorn
 from fastapi import FastAPI, Request, HTTPException
-from create_bot import bot
 from config import admin_id, seo_price, seo_name
+from create_bot import bot
 from utils import db
+import datetime
+import uvicorn
+import gspread
+
+CREDENTIALS_FILE = 'creds.json'
+gc = gspread.service_account(filename=CREDENTIALS_FILE)
+sh = gc.open("бот услуг")
+ws = sh.get_worksheet(0)
 
 app = FastAPI()
 
@@ -20,7 +25,8 @@ async def check_pay(req: Request):
 Если с вами после оформления заказа не связался менеджер, пожалуйста напишите нам самостоятельно в
 ЛС: @SEO_optimizacia_wildberries""")
     user_data = await db.get_user(user_id)
-
+    ws.append_row([user_data["full_name"], user_data["username"], seo_name[seo_id], seo_price[seo_id],
+                   datetime.datetime.now().strftime("%d.%m.%Y"), datetime.datetime.now().strftime("%H:%M:%S")])
     order_text = f"""Пользователь: {user_data['full_name']}
 Юзернейм: @{user_data['username']}
 Пакет: {seo_name[seo_id]}

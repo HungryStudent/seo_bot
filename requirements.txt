@@ -18,3 +18,7 @@ urllib3==1.26.13
 wrapt==1.14.1
 yarl==1.8.1
 yookassa==2.3.2
+
+uvicorn~=0.20.0
+gspread~=5.7.2
+fastapi~=0.87.0

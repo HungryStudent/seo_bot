@@ -10,10 +10,10 @@ bot = Bot(token=GROUP_TOKEN)
 dp = Dispatcher(bot)
 
 sub_text = ["{name}, подпишись на бота", "{name}, подпишись на канал", "{name}, подпишись на канал и бота"]
-sub_kb = [InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Бот", url="https://t.me/efanov_dev_bot")),
-          InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Канал", url="https://t.me/topkanalefan")),
-          InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Бот", url="https://t.me/efanov_dev_bot"),
-                                                InlineKeyboardButton("Канал", url="https://t.me/topkanalefan"))]
+sub_kb = [InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Бот", url="https://t.me/WB_Services_Up_Bot")),
+          InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Канал", url="https://t.me/SEO_for_WB")),
+          InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Бот", url="https://t.me/WB_Services_Up_Bot"),
+                                                InlineKeyboardButton("Канал", url="https://t.me/SEO_for_WB"))]
 
 
 async def on_startup(_):

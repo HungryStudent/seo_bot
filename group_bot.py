@@ -9,11 +9,9 @@ from config import channel_id, GROUP_TOKEN
 bot = Bot(token=GROUP_TOKEN)
 dp = Dispatcher(bot)
 
-sub_text = ["{name}, подпишись на бота", "{name}, подпишись на канал", "{name}, подпишись на канал и бота"]
-sub_kb = [InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Бот", url="https://t.me/WB_Services_Up_Bot")),
-          InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Канал", url="https://t.me/SEO_for_WB")),
-          InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Бот", url="https://t.me/WB_Services_Up_Bot"),
-                                                InlineKeyboardButton("Канал", url="https://t.me/SEO_for_WB"))]
+sub_text = "Привет, {name}\n\nЧтобы писать в этой группе подпишитесь на наши канал и чат-бот"
+sub_kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Канал 🚀", url="https://t.me/WB_Services_Up_Bot"),
+                                               InlineKeyboardButton("Чат-бот 🤖", url="https://t.me/SEO_for_WB"))
 
 
 async def on_startup(_):
@@ -38,11 +36,11 @@ async def check_sub(message: Message):
         sub_status += 1
     member = await message.bot.get_chat_member(channel_id, message.from_user.id)
     if member.status not in ["member", "admin", "creator"]:
-        sub_status += 2
+        sub_status += 1
     if sub_status == -1:
         return
-    await message.answer(sub_text[sub_status].format(name=message.from_user.first_name),
-                         reply_markup=sub_kb[sub_status])
+    await message.answer(sub_text.format(name=message.from_user.first_name),
+                         reply_markup=sub_kb)
     await message.delete()
 
 

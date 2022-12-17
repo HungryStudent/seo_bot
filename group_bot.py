@@ -4,11 +4,9 @@ from aiogram.utils import executor
 from aiogram import Bot
 
 from utils.db import get_user
-from config import channel_id
+from config import channel_id, GROUP_TOKEN
 
-TOKEN = "5958619383:AAHzvScq3PloVv18sbYMicEj_QPUqSAS09E"
-
-bot = Bot(token=TOKEN)
+bot = Bot(token=GROUP_TOKEN)
 dp = Dispatcher(bot)
 
 sub_text = ["{name}, подпишись на бота", "{name}, подпишись на канал", "{name}, подпишись на канал и бота"]

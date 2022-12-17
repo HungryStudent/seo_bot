@@ -9,10 +9,10 @@ from config import sub_channel_id, GROUP_TOKEN, sub_channel_url, sub_bot_url, su
 bot = Bot(token=GROUP_TOKEN)
 dp = Dispatcher(bot)
 
-
 sub_kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Канал 🚀", url=sub_channel_url),
                                                InlineKeyboardButton("Чат-бот 🤖", url=sub_bot_url),
-                                               InlineKeyboardButton("Узнай на какой позиции твой товар", url=sub_partner_url))
+                                               InlineKeyboardButton("Узнай на какой позиции твой товар",
+                                                                    url=sub_partner_url))
 
 
 async def on_startup(_):

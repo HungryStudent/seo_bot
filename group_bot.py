@@ -34,7 +34,7 @@ async def check_sub(message: Message):
     sub_status = -1
     if user is None:
         sub_status += 1
-    member = await message.bot.get_chat_member(channel_id, message.from_user.id)
+    member = await message.bot.get_chat_member(sub_channel_id, message.from_user.id)
     if member.status not in ["member", "admin", "creator"]:
         sub_status += 1
     if sub_status == -1:

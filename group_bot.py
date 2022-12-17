@@ -1,15 +1,15 @@
-from aiogram.dispatcher import Dispatcher
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, ContentTypes
+from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
 from aiogram import Bot
+
 from utils.db import get_user
+from config import channel_id
 
 TOKEN = "5958619383:AAHzvScq3PloVv18sbYMicEj_QPUqSAS09E"
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
-
-channel_id = -1001663696156
 
 sub_text = ["{name}, подпишись на бота", "{name}, подпишись на канал", "{name}, подпишись на канал и бота"]
 sub_kb = [InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Бот", url="https://t.me/efanov_dev_bot")),

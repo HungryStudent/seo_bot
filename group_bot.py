@@ -4,14 +4,14 @@ from aiogram.utils import executor
 from aiogram import Bot
 
 from utils.db import get_user
-from config import channel_id, GROUP_TOKEN
+from config import sub_channel_id, GROUP_TOKEN, sub_channel_url, sub_bot_url
 
 bot = Bot(token=GROUP_TOKEN)
 dp = Dispatcher(bot)
 
 sub_text = "Привет, {name}\n\nЧтобы писать в этой группе подпишитесь на наши канал и чат-бот"
-sub_kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Канал 🚀", url="https://t.me/SEO_for_WB"),
-                                               InlineKeyboardButton("Чат-бот 🤖", url="https://t.me/WB_Services_Up_Bot"))
+sub_kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Канал 🚀", url=sub_channel_url),
+                                               InlineKeyboardButton("Чат-бот 🤖", url=sub_bot_url))
 
 
 async def on_startup(_):

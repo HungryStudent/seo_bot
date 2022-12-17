@@ -10,8 +10,8 @@ bot = Bot(token=GROUP_TOKEN)
 dp = Dispatcher(bot)
 
 sub_text = "Привет, {name}\n\nЧтобы писать в этой группе подпишитесь на наши канал и чат-бот"
-sub_kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Канал 🚀", url="https://t.me/WB_Services_Up_Bot"),
-                                               InlineKeyboardButton("Чат-бот 🤖", url="https://t.me/SEO_for_WB"))
+sub_kb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton("Канал 🚀", url="https://t.me/SEO_for_WB"),
+                                               InlineKeyboardButton("Чат-бот 🤖", url="https://t.me/WB_Services_Up_Bot"))
 
 
 async def on_startup(_):

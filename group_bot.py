@@ -4,7 +4,7 @@ from aiogram.utils import executor
 from aiogram import Bot
 
 from utils.db import get_user
-from config import sub_channel_id, GROUP_TOKEN, sub_channel_url, sub_bot_url, sub_text, sub_partner_url
+from config import sub_channel_id, GROUP_TOKEN, sub_channel_url, sub_bot_url, sub_text, sub_partner_url, sub_admins
 
 bot = Bot(token=GROUP_TOKEN)
 dp = Dispatcher(bot)
@@ -31,6 +31,8 @@ async def new_member(message: Message):
 
 @dp.message_handler(content_types=ContentTypes.ANY)
 async def check_sub(message: Message):
+    if message.from_user.id in sub_admins:
+        return
     user = await get_user(message.from_user.id)
     sub_status = -1
     if user is None:

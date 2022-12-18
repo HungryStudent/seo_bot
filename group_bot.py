@@ -1,3 +1,5 @@
+import asyncio
+
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, ContentTypes
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
@@ -42,9 +44,11 @@ async def check_sub(message: Message):
         sub_status += 1
     if sub_status == -1:
         return
-    await message.answer(sub_text.format(name=message.from_user.first_name),
-                         reply_markup=sub_kb)
+    msg = await message.answer(sub_text.format(name=message.from_user.first_name),
+                               reply_markup=sub_kb)
     await message.delete()
+    await asyncio.sleep(300)
+    await msg.delete()
 
 
 if __name__ == "__main__":

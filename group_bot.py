@@ -47,7 +47,7 @@ async def check_sub(message: Message):
     msg = await message.answer(sub_text.format(name=message.from_user.first_name),
                                reply_markup=sub_kb)
     try:
-       await message.delete()
+        await message.delete()
     except:
         pass
     await asyncio.sleep(300)
